@@ -1,0 +1,26 @@
+{
+  "name": "todo-backend",
+  "version": "1.0.0",
+  "description": "Learning to build something using something...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satyamlal/todo-app.git"
+  },
+  "author": "Satyam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/satyamlal/todo-app/issues"
+  },
+  "homepage": "https://github.com/satyamlal/todo-app#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "zod": "^3.24.2"
+  }
+}

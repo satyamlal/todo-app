@@ -1,5 +1,6 @@
 const express = require("express");
 const { createTodo, updateTodo } = require("./types");
+const { todo } = require("./db");
 const app = express();
 
 const port = 3000;
@@ -10,8 +11,7 @@ app.get("/", (req, res) => {
   res.send("This is our Todo List App Home page");
 });
 
-app.post("/todo", (req, res) => {
-  res.send("Todo route");
+app.post("/todo", async (req, res) => {
   const createPayload = req.body;
   const parsePayload = createTodo.safeParse(createPayload);
 
@@ -21,11 +21,27 @@ app.post("/todo", (req, res) => {
     });
     return;
   }
+
+  await todo.create({
+    title: createPayload.title,
+    description: createPayload.description,
+    completed: false,
+  });
+
+  res.json({
+    msg: "Todo created!",
+  });
 });
 
-app.get("/todos", (req, res) => {});
+app.get("/todos", async (req, res) => {
+  const todos = await todo.find({});
 
-app.put("/completed", (req, res) => {
+  res.json({
+    todos,
+  });
+});
+
+app.put("/completed", async (req, res) => {
   const updatePayload = req.body;
   const parsePayload = updateTodo.safeParse(updatePayload);
 
@@ -35,6 +51,19 @@ app.put("/completed", (req, res) => {
     });
     return;
   }
+
+  await todo.update(
+    {
+      _id: req.body.id,
+    },
+    {
+      completed: true,
+    }
+  );
+
+  res.json({
+    msg: "Todo marked as competed!!!!",
+  });
 });
 
 app.listen(port, () => {

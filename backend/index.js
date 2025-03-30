@@ -65,3 +65,5 @@ app.put("/completed", async (req, res) => {
 app.listen(port, () => {
   console.log("Listening to port 3000");
 });
+
+// Postman test is working perfectly for the backend

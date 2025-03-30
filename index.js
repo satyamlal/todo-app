@@ -7,10 +7,6 @@ const port = 3000;
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("This is our Todo List App Home page");
-});
-
 app.post("/todo", async (req, res) => {
   const createPayload = req.body;
   const parsePayload = createTodo.safeParse(createPayload);
@@ -62,7 +58,7 @@ app.put("/completed", async (req, res) => {
   );
 
   res.json({
-    msg: "Todo marked as competed!!!!",
+    msg: "Todo marked as competed!!!",
   });
 });
 
